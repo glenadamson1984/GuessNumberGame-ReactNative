@@ -3,6 +3,8 @@ import {View, StyleSheet, Text, TextInput, Button, TouchableWithoutFeedback, Key
 import Card from "./Card";
 import Colors from "../constants/colors"
 import Input from "./Input";
+import NumberContainer from "./NumberContainer";
+import DefaultStyles from "../constants/default-styles";
 
 const StartGameScreen = (props: any) => {
 
@@ -33,20 +35,25 @@ const StartGameScreen = (props: any) => {
         setConfirmed(true);
         setSelectedNumber(chosenNumber);
         setEnteredValue("");
+        Keyboard.dismiss();
     }
 
     let confirmedOutput;
 
     if (confirmed) {
-        confirmedOutput = <Text>Chosen Number: {selectedNumber}</Text>
+        confirmedOutput = <Card style={styles.summaryContainer}>
+            <Text style={DefaultStyles.bodyText}>You Selected</Text>
+            <NumberContainer>{selectedNumber}</NumberContainer>
+            <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)} />
+        </Card>
     }
 
     return (
         <TouchableWithoutFeedback onPress={dismissKeyboardHandler}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Start a New Game</Text>
+                <Text style={DefaultStyles.title}>Start a New Game</Text>
                 <Card style={styles.inputContainer}>
-                    <Text>Select a Number</Text>
+                    <Text style={DefaultStyles.bodyText}>Select a Number</Text>
                     <Input style={styles.input} blurOnSubmit autoCapitalize="none"
                            autoCorrect={false} keyboardType="number-pad" maxLength={2}
                            onChangeText={numberInputHandler}
@@ -69,10 +76,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
 
     },
-    title: {
-        fontSize: 20,
-        marginVertical: 10,
-    },
     inputContainer: {
         width: 300,
         maxWidth: "80%",
@@ -90,6 +93,10 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 100,
+    },
+    summaryContainer: {
+        marginTop: 20,
+        alignItems: "center",
     }
 });
 
