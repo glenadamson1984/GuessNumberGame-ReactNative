@@ -2,6 +2,9 @@ import React from "react";
 import {View, Text, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Platform} from "react-native";
 import Colors from "../constants/colors";
 
+// YOU CAN RENAME THE FILE EXTENSION OF ANY FILE WITH A .ANDROID OR .IOS AND THEN IMPORT JUST THE FOLLOWING
+// MainButton AND EXPO WILL DO THE WORK OF RENDERING WHICH FILE IT NEEDS BASED ON THE LONGER FILE EXTENSION
+
 const MainButton = (props: any) => {
     let ButtonComponent: any = TouchableOpacity;
 

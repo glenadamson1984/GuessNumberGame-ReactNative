@@ -1,6 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// SAFEAREA VIEW takes into account notches or phone designs with indentations etc think iphone 11 top notch - to code
+// around this i was putting a margin top in place but using this component saves doing so and adjusts for devices without
+// the notches. Has to be in top most view so normally app.tsx
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import Header from "./components/Header";
 import StartGameScreen from "./components/StartGameScreen";
 import GameScreen from "./components/GameScreen";
@@ -49,10 +52,10 @@ const App = () => {
     }
 
       return (
-        <View style={styles.screen}>
+          <SafeAreaView style={styles.screen}>
             <Header title="Guess a Number" />
             {content}
-        </View>
+          </SafeAreaView>
       );
 }
 
